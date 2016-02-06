@@ -1,0 +1,59 @@
+---
+- name: Bootstrap server for future ansible runs
+  hosts: all
+  vars:
+    user_name: fhem
+    user_pass: $6$hbB1Zn6B4CwWqpPw$Qo/meGtE.juj6mOTi1PmbpZsKllPKpjZOw2/ygRIuoCnyHjquspAKNL.D2CDumsR4eSFdUoEH4J5GzOqHHehl0
+  become: yes
+  remote_user: pi
+  roles:
+    - charleskorn.raspi-expanded-rootfs
+    - geerlingguy.raspberry-pi
+
+  tasks:
+  - name: Update apt cache
+    apt: update_cache=yes
+
+  - name: Safe aptitude upgrade
+    apt: upgrade=safe
+
+  - name: Add fhem user
+    user:
+        name: "{{ user_name }}"
+        password: "{{ user_pass }}"
+        shell: "/bin/bash"
+        groups: "sudo"
+        append: "yes"
+        generate_ssh_key: "yes"
+        ssh_key_bits: "2048"
+        state: "present"
+
+  - name: Add my public key to the new server
+    authorized_key:
+        user: "{{ user_name }}"
+        key: "{{ lookup('file', 'certificates/id_rsa.pub') }}"
+        state: present
+
+  - name: Remove root SSH access
+    lineinfile:
+        dest: /etc/ssh/sshd_config
+        regexp: "^PermitRootLogin"
+        line: "PermitRootLogin no"
+        state: present
+
+  - name: Remove SSH password access
+    lineinfile:
+        dest: /etc/ssh/sshd_config
+        regexp: "^PasswordAuthentication"
+        line: "PasswordAuthentication no"
+        state: present
+
+  - name: Allow fhem to use sudo without password and remove privileg for user pi
+    lineinfile: 
+        dest: /etc/sudoers 
+        regexp: "^pi ALL"
+        line: "fhem ALL=(ALL) NOPASSWD: ALL"
+        state: present 
+
+  - name: Reboot the server
+    command: /sbin/reboot
