@@ -1,0 +1,35 @@
+---
+- name: Bootstrap server for future ansible runs
+  hosts: fhem
+  vars:
+    ansible_ssh_user: fhem
+  remote_user: fhem
+  become: yes
+
+  tasks:
+  - name: Remove root SSH access
+    lineinfile:
+        dest: /etc/ssh/sshd_config
+        regexp: "^PermitRootLogin"
+        line: "PermitRootLogin no"
+        state: present
+
+  - name: Remove SSH password access
+    lineinfile:
+        dest: /etc/ssh/sshd_config
+        regexp: "^PasswordAuthentication"
+        line: "PasswordAuthentication no"
+        state: present
+
+  - name: Allow fhem to use sudo without password and remove privileg for user pi
+    lineinfile: 
+        dest: /etc/sudoers 
+        regexp: "^pi ALL"
+        line: "fhem ALL=(ALL) NOPASSWD: ALL"
+        state: present 
+
+  - name: Reboot the server
+    command: sudo shutdown -r now "Ansible updates triggered"
+    async: 0
+    poll: 0
+    ignore_errors: true

@@ -10,11 +10,13 @@ This playbook expand the filesystem, optimize some kernel params (disable hdmi b
 
 ### Usage
 
+    ansible-playbook pi-config-fs.yml -i hosts -k
+
     ansible-playbook pi-config.yml -i hosts -k
     
-    ansible-playbook bootstrap.yml -i hosts -k
+    ansible-playbook pi-secure-ssh.yml -i hosts
 
-    ansible-playbook purge.yml -i hosts
+    ansible-playbook pi-purge.yml -i hosts
 
 # License
 

@@ -1,0 +1,16 @@
+---
+- name: Expand file system and configure basic pi settings (e.g. hdmi off)
+  hosts: initial
+  vars:
+    ansible_ssh_user: pi
+  remote_user: pi
+  sudo: true
+  roles:
+    - role: geerlingguy.raspberry-pi 
+
+  tasks:
+  - name: Reboot the server
+    command: sudo shutdown -r now "Ansible updates triggered"
+    async: 0
+    poll: 0
+    ignore_errors: true

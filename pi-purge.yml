@@ -1,0 +1,61 @@
+---
+# Special thx goes to dstinebaugh 
+# (https://github.com/dstinebaugh/server_pi/blob/master/roles/server_pi/tasks/main.yml)
+- name: Purge unnecessary software
+  hosts: fhem
+  vars:
+    ansible_ssh_user: fhem
+  become: yes
+  remote_user: fhem
+
+  tasks:
+  - name: Remove Wolfram Engine
+    apt: name=wolfram-engine state=absent purge=yes
+
+  - name: Remove tons of X11 stuff no longer needed
+    apt: name={{ item }} state=absent purge=yes
+    with_items:
+        - scratch
+        - penguinspuzzle
+        - omxplayer
+        - xserver*
+        - x11*
+        - xarchiver
+        - xauth
+        - xkb-data
+        - console-setup
+        - xinit
+        - lightdm
+        - lxde*
+        - python-tk
+        - python3-tk
+        - gtk*
+        - libgtk*
+        - openbox
+        - libxt*
+        - lxpanel
+        - gnome*
+        - libqt*
+        - libxcb*
+        - libxfont*
+        - lxmenu*
+        - gvfs*
+        - xdg-*
+        - desktop*
+        - shared-mime-info
+        - gsfonts
+
+  - name: Check if packages need to be autoremoved
+    command: apt-get --dry-run autoremove
+    register: check_autoremove
+    changed_when: False
+
+  - name: Autoremove unused packages
+    command: apt-get -y autoremove
+    when: "'packages will be REMOVED' in check_autoremove.stdout"
+
+  - name: Delete Python Games
+    file: path=/home/pi/python_games state=absent
+
+  - name: Delete large test video
+    file: path=/opt/vc/src/hello_pi/hello_video/test.h264 state=absent

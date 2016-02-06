@@ -1,16 +1,20 @@
 ---
 - name: Expand file system and configure basic pi settings (e.g. hdmi off)
-  hosts: all
+  hosts: initial
   vars:
-    ansible_ssh_user: pi
-  remote_user: pi
+    ansible_ssh_user: fhem
+  remote_user: fhem
+  sudo: true
   roles:
-    - charleskorn.raspi-expanded-rootfs
-    - geerlingguy.raspberry-pi
-
-  tasks:
-  - name: Reboot the server
-    command: sudo shutdown -r now "Ansible updates triggered"
-    async: 0
-    poll: 0
-    ignore_errors: true
+    - role: mikolak.raspi-config
+      update_packages: yes
+      expanded_filesystem: no
+      memory_split_gpu: 16
+      ensure_optimal_cpu_params: yes
+      locale: en_US.UTF8
+      timezone: UTC
+      enable_camera: no
+      fail_on_auth_test: yes
+      raspi_config_replace_user:
+        name: fhem
+        path_to_ssh_key: ~/.ssh/id_rsa.pub

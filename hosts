@@ -1,2 +1,5 @@
-[fhem]
+[initial]
 raspberrypi
+
+[fhem]
+pi
