@@ -2,10 +2,11 @@
 - name: Bootstrap server for future ansible runs
   hosts: all
   vars:
+    ansible_ssh_user: pi
     user_name: fhem
     user_pass: $6$hbB1Zn6B4CwWqpPw$Qo/meGtE.juj6mOTi1PmbpZsKllPKpjZOw2/ygRIuoCnyHjquspAKNL.D2CDumsR4eSFdUoEH4J5GzOqHHehl0
-  become: yes
   remote_user: pi
+  become: yes
   roles:
     - charleskorn.raspi-expanded-rootfs
     - geerlingguy.raspberry-pi
@@ -56,4 +57,7 @@
         state: present 
 
   - name: Reboot the server
-    command: /sbin/reboot
+    command: sudo shutdown -r now "Ansible updates triggered"
+    async: 0
+    poll: 0
+    ignore_errors: true
