@@ -1,0 +1,3 @@
+- name: mikolak.raspi-config
+- name: geerlingguy.raspberry-pi
+# - name: charleskorn.raspi-expanded-rootfs

@@ -6,13 +6,15 @@ This playbook expand the filesystem, optimize some kernel params (disable hdmi b
 
 ### Requirements
 
-    ansible-galaxy install -r roles
+    ansible-galaxy install -r requirements.yml
 
 ### Usage
 
     ansible-playbook pi-config.yml -i hosts -k
     
     ansible-playbook bootstrap.yml -i hosts -k
+
+    ansible-playbook purge.yml -i hosts
 
 # License
 
