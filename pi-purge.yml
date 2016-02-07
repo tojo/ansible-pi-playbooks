@@ -9,41 +9,28 @@
   remote_user: fhem
 
   tasks:
-  - name: Remove Wolfram Engine
-    apt: name=wolfram-engine state=absent purge=yes
-
   - name: Remove tons of X11 stuff no longer needed
     apt: name={{ item }} state=absent purge=yes
     with_items:
-        - scratch
-        - penguinspuzzle
-        - omxplayer
-        - xserver*
-        - x11*
-        - xarchiver
-        - xauth
-        - xkb-data
-        - console-setup
-        - xinit
-        - lightdm
         - lxde*
-        - python-tk
-        - python3-tk
-        - gtk*
-        - libgtk*
-        - openbox
-        - libxt*
-        - lxpanel
         - gnome*
-        - libqt*
-        - libxcb*
-        - libxfont*
-        - lxmenu*
+        - xfce*
+        - python3*
+        - desktop*
+        - gtk*
+        - xserver*
         - gvfs*
         - xdg-*
-        - desktop*
-        - shared-mime-info
+        - libqt*
         - gsfonts
+        - midori
+        - omxplayer
+        - scratch
+        - wolfram-engine
+        - sonic-pi
+        - dillo
+        - netsurf-common
+        - netsurf-gtk
 
   - name: Check if packages need to be autoremoved
     command: apt-get --dry-run autoremove
