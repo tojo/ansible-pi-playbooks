@@ -1,8 +1,6 @@
-# Ansible playbooks for my raspi
+# Ansible playbooks for my FHEM installation on a pi
 
-## bootstrap.yml
-
-This playbook expand the filesystem, optimize some kernel params (disable hdmi because of power saving etc.), basic security stuff (system update, ssh settings) and user provisioning.
+This playbooks expand the filesystem, optimize some kernel params (disable hdmi because of power saving etc.), basic security stuff (system update, ssh settings), user provisioning and purge tons of X11 stuff.
 
 ### Requirements
 
@@ -10,13 +8,13 @@ This playbook expand the filesystem, optimize some kernel params (disable hdmi b
 
 ### Usage
 
-    ansible-playbook pi-config-fs.yml -i hosts -k
+    ansible-playbook fhempi-1-config-pi.yml -i hosts
 
-    ansible-playbook pi-config.yml -i hosts -k
+    ansible-playbook fhempi-2-update.yml -i hosts
     
-    ansible-playbook pi-secure-ssh.yml -i hosts
+    ansible-playbook fhempi-3-secure.yml -i hosts
 
-    ansible-playbook pi-purge.yml -i hosts
+    ansible-playbook fhempi-4-purge.yml -i hosts
 
 # License
 

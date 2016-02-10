@@ -1,4 +1,4 @@
-# Install raspberian
+# Install minibian (https://sourceforge.net/projects/minibian/)
 
 Identify the SD card
 
@@ -16,8 +16,8 @@ Unmount
 
 	Unmount of all volumes on disk2 was successful
 
-Copy rasperian image on the SD card
+Copy minibian image on the SD card
 
-	sudo dd bs=1m if=2015-11-21-raspbian-jessie.img of=/dev/disk2
+	sudo dd bs=1m if=2015-11-12-jessie-minibian.img of=/dev/disk2
 
 Eject the card.

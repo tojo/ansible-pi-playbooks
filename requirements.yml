@@ -1,2 +1,3 @@
 - name: mikolak.raspi-config
 - name: geerlingguy.raspberry-pi
+- name: lborguetti.system-update

@@ -2,8 +2,8 @@
 - name: Bootstrap server for future ansible runs
   hosts: fhem
   vars:
-    ansible_ssh_user: fhem
-  remote_user: fhem
+    ansible_user: tojo
+  remote_user: tojo
   become: yes
 
   tasks:

@@ -4,9 +4,9 @@
 - name: Purge unnecessary software
   hosts: fhem
   vars:
-    ansible_ssh_user: fhem
+    ansible_user: tojo
   become: yes
-  remote_user: fhem
+  remote_user: tojo
 
   tasks:
   - name: Remove tons of X11 stuff no longer needed
