@@ -1,10 +1,12 @@
 ---
-- name: Bootstrap server for future ansible runs
-  hosts: fhem
+- name: Secure the server (update dist + remove root ssh access etc.)
+  hosts: heimbot
   vars:
     ansible_user: tojo
   remote_user: tojo
   become: yes
+  roles:
+    - role: lborguetti.system-update
 
   tasks:
   - name: Remove root SSH access

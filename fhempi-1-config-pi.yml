@@ -2,10 +2,10 @@
 - name: Expand file system and configure basic pi settings (e.g. hdmi off)
   hosts: initial
   vars:
-    ansible_ssh_user: pi
+    ansible_ssh_user: root
     ansible_ssh_pass: raspberry
-  remote_user: pi
-  sudo: true
+  remote_user: root
+  become: false
   roles:
     - role: geerlingguy.raspberry-pi 
     - role: mikolak.raspi-config
@@ -15,7 +15,7 @@
       raspi_config_ensure_optimal_cpu_params: yes
       locale: en_US.UTF8
       raspi_config_timezone: UTC
-      raspi_config_hostname: fhempi
+      raspi_config_hostname: heimbot
       raspi_config_enable_camera: no
       raspi_config_fail_on_auth_test: yes
       raspi_config_replace_user:

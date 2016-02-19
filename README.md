@@ -8,13 +8,11 @@ This playbooks expand the filesystem, optimize some kernel params (disable hdmi 
 
 ### Usage
 
+	ansible-playbook fhempi-0-bootstrap.yml -i hosts
+
     ansible-playbook fhempi-1-config-pi.yml -i hosts
 
-    ansible-playbook fhempi-2-update.yml -i hosts
-    
-    ansible-playbook fhempi-3-secure.yml -i hosts
-
-    ansible-playbook fhempi-4-purge.yml -i hosts
+    ansible-playbook fhempi-2-secure.yml -i hosts
 
 # License
 

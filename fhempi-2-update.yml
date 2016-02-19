@@ -1,9 +1,0 @@
----
-- name: Expand file system and configure basic pi settings (e.g. hdmi off)
-  hosts: fhem
-  vars:
-    ansible_ssh_user: tojo    
-  remote_user: tojo
-  sudo: true
-  roles:
-    - role: lborguetti.system-update

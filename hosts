@@ -1,5 +1,5 @@
 [initial]
-raspberrypi
+minibian
 
-[fhem]
-fhempi
+[heimbot]
+heimbot

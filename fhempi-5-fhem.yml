@@ -1,7 +1,0 @@
-# http://www.meintechblog.de/2013/05/fhem-server-auf-dem-raspberry-pi-in-einer-stunde-einrichten/
-
-# sudo apt-get -f install && sudo apt-get -y install perl libdevice-serialport-perl libio-socket-ssl-perl libwww-perl libxml-simple-perl
-
-# sudo wget http://fhem.de/fhem-5.7.deb && sudo dpkg -i fhem-5.7.deb
-
-# cd /opt && sudo chmod -R a+w fhem && sudo usermod -a -G tty pi && sudo usermod -a -G tty fhem
