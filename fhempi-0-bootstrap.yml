@@ -1,10 +1,10 @@
 ---
-- name: Bootstrap minibian e.g. prepare for ansible and install python
+- name: Bootstrap raspbian lite e.g. prepare for ansible and install python
   hosts: initial
   vars:
-    ansible_ssh_user: root
+    ansible_ssh_user: pi
     ansible_ssh_pass: raspberry
-  remote_user: root
+  remote_user: pi
   become: false
 
   tasks:
@@ -19,4 +19,4 @@
 
   tasks:
   - name: install raspi-config
-    apt: name=mikolak.raspi-config state=present
+    apt: name=raspi-config state=present

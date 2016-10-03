@@ -1,4 +1,4 @@
-# Install minibian (https://sourceforge.net/projects/minibian/)
+# Install Raspbian lite (https://downloads.raspberrypi.org/raspbian_lite_latest)
 
 Identify the SD card
 
@@ -16,8 +16,8 @@ Unmount
 
 	Unmount of all volumes on disk2 was successful
 
-Copy minibian image on the SD card
+Copy Raspbian lite image on the SD card
 
-	sudo dd bs=1m if=2015-11-12-jessie-minibian.img of=/dev/disk2
+	sudo dd bs=1m if=2016-09-23-raspbian-jessie-lite.img of=/dev/disk2
 
 Eject the card.

@@ -1,0 +1,34 @@
+---
+- name: Install fhem
+  hosts: heimbot
+  vars:
+    ansible_user: tojo
+  remote_user: tojo
+  become: yes
+
+  tasks:
+  - name: Download fhem repo key
+    command: wget https://debian.fhem.de/archive.key
+  - name: Add fhem repo key
+    command: apt-key add archive.key
+  - name: Install https transport
+    apt: name=apt-transport-https
+  - name: Add fhem repo
+    lineinfile:
+        dest: /etc/apt/sources.list
+        line: "deb https://debian.fhem.de/nightly ./"
+        state: present
+  - name: Update apt
+    command: apt-get update
+  - name: Install fhem
+    apt: name=fhem
+  - name: Install ntp
+    apt: name=ntpdate
+  - name: Configure ntp
+    command: ntpdate -u de.pool.ntp.org
+  - name: Install JSON
+    apt: name=libjson-perl
+  - name: Install AES
+    apt: name=libcrypt-rijndael-perl
+  - name: Install libdatetime
+    apt: name=libdatetime-format-strptime-perl
