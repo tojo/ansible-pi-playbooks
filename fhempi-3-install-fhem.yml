@@ -16,7 +16,7 @@
   - name: Add fhem repo
     lineinfile:
         dest: /etc/apt/sources.list
-        line: "deb https://debian.fhem.de/nightly ./"
+        line: "deb https://debian.fhem.de/stable ./"
         state: present
   - name: Update apt
     command: apt-get update
@@ -32,3 +32,9 @@
     apt: name=libcrypt-rijndael-perl
   - name: Install libdatetime
     apt: name=libdatetime-format-strptime-perl
+
+  - name: Reboot the server
+    command: sudo shutdown -r now "Ansible updates triggered"
+    async: 0
+    poll: 0
+    ignore_errors: true
