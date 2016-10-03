@@ -12,7 +12,7 @@
       raspi_config_update_packages: no
       raspi_config_expanded_filesystem: yes
       raspi_config_memory_split_gpu: 16
-      raspi_config_ensure_optimal_cpu_params: yes
+      raspi_config_ensure_optimal_cpu_params: no
       locale: en_US.UTF8
       raspi_config_timezone: UTC
       raspi_config_hostname: heimbot

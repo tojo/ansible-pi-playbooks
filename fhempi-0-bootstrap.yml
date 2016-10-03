@@ -16,3 +16,7 @@
   tasks:
   - name: install sudo
     apt: name=sudo state=present
+
+  tasks:
+  - name: install raspi-config
+    apt: name=mikolak.raspi-config state=present
